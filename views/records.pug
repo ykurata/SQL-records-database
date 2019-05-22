@@ -1,0 +1,20 @@
+extends layout 
+
+block content 
+  h1 Records Database
+  form(action='/records/search')
+   input(type='search', name='term', placeholder='Search...')
+   button(type="submit") Search 
+
+  p
+   a.button(href='/records/new') Create New Record
+  table
+    thead
+      tr
+        th Artist
+        th Title
+    tbody
+      each record in records 
+        tr 
+          th= record.artist
+          th= record.title
