@@ -23,6 +23,9 @@ module.exports = {
       sideB: {
         type: Sequelize.TEXT
       },
+      speed: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
