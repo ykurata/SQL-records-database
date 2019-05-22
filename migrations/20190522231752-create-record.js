@@ -17,14 +17,14 @@ module.exports = {
       genre: {
         type: Sequelize.STRING
       },
+      speed: {
+        type: Sequelize.INTEGER
+      },
       sideA: {
         type: Sequelize.TEXT
       },
       sideB: {
         type: Sequelize.TEXT
-      },
-      speed: {
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

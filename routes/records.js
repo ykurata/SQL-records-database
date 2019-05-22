@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 
+// Get a new record form
 router.get('/new', function(req, res){
   res.render("new-record");
 });
