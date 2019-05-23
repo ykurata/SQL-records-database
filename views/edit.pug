@@ -31,10 +31,10 @@ block content
       input#speed(name="speed", type="number", value=record.speed)        
     p 
       label(for="sideA") Side A
-      textarea#sideA(name="sideA", type="text", value=record.sideA)
+      textarea#sideA(name="sideA", type="text")= record.sideA
     p 
       label(for="sideB") Side B 
-      textarea#sideB(name="sideB", type="text", value=record.sideB)  
+      textarea#sideB(name="sideB", type="text")= record.sideB  
     p
       input(type='submit', value='Update Record')  
     p
