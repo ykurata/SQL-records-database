@@ -6,6 +6,8 @@ var Record = require('../models').Record;
 router.get('/', function(req, res, next) {
   Record.findAll({order: [["createdAt", "DESC"]]}).then(function(records) {
     res.render("records", { records: records });
+  }).catch(function(err){
+    res.send(500, err);
   })
 });
 
@@ -24,6 +26,7 @@ router.post('/', function(req, res, next){
 });
 
 
+// Get a specific record
 router.get('/:id', function(req, res, next){
   Record.findByPk(req.params.id).then(function(record){
     if (record) {
@@ -32,6 +35,51 @@ router.get('/:id', function(req, res, next){
       res.render("page-not-found");
     }
   });
-})
+});
+
+
+// Get a update page
+router.get('/:id/edit', function(req, res, next){
+  Record.findByPk(req.params.id).then(function(record){
+    if (record){
+      res.render("edit", { record: record });
+    } else {
+      res.render("page-not-found");
+    }
+  });
+});
+
+
+// Update a specific record
+router.put('/:id', function(req, res, next){
+  Record.findByPk(req.params.id).then(function(record){
+    if (record) {
+      return record.update(req.body);
+    } else {
+      res.render('page-not-found');
+    }
+  }).then(function(record){
+    res.redirect('/records/' + record.id);
+  }).catch(function(err){
+    res.send(500, err);
+  });
+});
+
+
+// Delete a record
+router.post("/:id/delete", function(req, res, next){
+  Record.findByPk(req.params.id).then(function(record){
+    if(record) {
+      return record.destroy();
+    } else {
+      res.send(404);
+    }
+  }).then(function(){
+    res.redirect("/records");
+  }).catch(function(err){
+    res.send(500, err);
+  });
+});
+
 
 module.exports = router;

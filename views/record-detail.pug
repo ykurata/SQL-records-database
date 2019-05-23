@@ -21,4 +21,10 @@ block content
   h2 Side B 
   p= record.sideB
   
+  a.button(href=`/records/${record.id}/edit`) Edit
+  
   a.button(href="/records") Back
+  
+  form(action=`/records/${record.id}/delete`, method='post')
+    p 
+      input(type='submit', value="Delete") 
