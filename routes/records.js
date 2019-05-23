@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var Record = require('../models').Record;
 
-/* GET users listing. */
+/* GET records listing. */
 router.get('/', function(req, res, next) {
-  Record.findAll({order: [["createdAt", "DESC"]]}).then(function(records) {
+  Record.findAll({order: [["artist", "ASC"]]}).then(function(records) {
     res.render("records", { records: records });
   }).catch(function(err){
     res.send(500, err);
