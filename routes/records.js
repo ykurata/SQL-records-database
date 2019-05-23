@@ -4,16 +4,34 @@ var Record = require('../models').Record;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  Record.findAll().then(function(records){
+  Record.findAll({order: [["createdAt", "DESC"]]}).then(function(records) {
     res.render("records", { records: records });
-  }).catch(function(err){
-    res.send(500, err);
+  })
+});
+
+
+// Get new record form
+router.get('/new', function(req, res){
+  res.render("new-record");
+});
+
+
+// Creat a new record
+router.post('/', function(req, res, next){
+  Record.create(req.body).then(function(record){
+    res.redirect("/records/" + record.id);
   });
 });
 
 
-router.get('/new', function(req, res){
-  res.render("new-record");
-});
+router.get('/:id', function(req, res, next){
+  Record.findByPk(req.params.id).then(function(record){
+    if (record) {
+      res.render("record-detail", { record: record });
+    } else {
+      res.render("page-not-found");
+    }
+  });
+})
 
 module.exports = router;

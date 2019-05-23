@@ -1,0 +1,24 @@
+extends layout 
+
+block content 
+  h1 Record Detail
+    
+  h2 Artist name 
+  p= record.artist
+  
+  h2 Album title 
+  p= record.title
+  
+  h2 Genre 
+  p= record.genre 
+  
+  h2 Speed 
+  p= record.speed 
+  
+  h2 Side A 
+  p= record.sideA
+  
+  h2 Side B 
+  p= record.sideB
+  
+  a.button(href="/records") Back

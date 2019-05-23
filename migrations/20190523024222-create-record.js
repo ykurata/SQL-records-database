@@ -17,6 +17,9 @@ module.exports = {
       genre: {
         type: Sequelize.STRING
       },
+      speed: {
+        type: Sequelize.INTEGER
+      },
       sideA: {
         type: Sequelize.TEXT
       },

@@ -5,8 +5,8 @@ block content
     
   form(action="/records", method="post")
     p 
-      label(for="name") Artist's Name 
-      input#name(name="name", type="text")
+      label(for="artist") Artist's Name 
+      input#artist(name="artist", type="text")
     p 
       label(for="title") Album Title 
       input#title(name="title", type="text")
@@ -25,6 +25,9 @@ block content
         option(value="Dance Music") Dance Music
         option(value="Instrumental") Instrumental
         option(value="Other") Other
+    p 
+      label(for="speed") Speed
+      input#speed(name="speed", type="number")        
     p 
       label(for="sideA") Side A
       textarea#sideA(name="sideA", type="text")

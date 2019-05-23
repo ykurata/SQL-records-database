@@ -16,5 +16,7 @@ block content
     tbody
       each record in records 
         tr 
-          th= record.artist
-          th= record.title
+          td
+            a(href=`/records/${record.id}`)= record.artist 
+          td
+            a(href=`/records/${record.id}`)= record.title
