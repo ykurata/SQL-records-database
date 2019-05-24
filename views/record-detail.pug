@@ -16,15 +16,15 @@ block content
   p= record.speed 
   
   h2 Side A 
-  p= record.sideA
+  p!= md(record.sideA)
   
   h2 Side B 
-  p= record.sideB
+  p!= md(record.sideB)
   
   a.button(href=`/records/${record.id}/edit`) Edit
   
   a.button(href="/records") Back
   
-  form(action=`/records/${record.id}/delete`, method='post')
+  form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
     p 
       input(type='submit', value="Delete") 

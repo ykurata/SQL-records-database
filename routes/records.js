@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Record = require('../models').Record;
+var md = require("node-markdown").Markdown;
 
 /* GET records listing. */
 router.get('/', function(req, res, next) {
@@ -30,7 +31,7 @@ router.post('/', function(req, res, next){
 router.get('/:id', function(req, res, next){
   Record.findByPk(req.params.id).then(function(record){
     if (record) {
-      res.render("record-detail", { record: record });
+      res.render('record-detail', {record: record, md: md} );
     } else {
       res.render("page-not-found");
     }
@@ -51,7 +52,7 @@ router.get('/:id/edit', function(req, res, next){
 
 
 // Update a specific record
-router.put('/:id', function(req, res, next){
+router.post('/:id', function(req, res, next){
   Record.findByPk(req.params.id).then(function(record){
     if (record) {
       return record.update(req.body);

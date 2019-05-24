@@ -2,8 +2,8 @@ extends layout
 
 block content 
   h1 Update Record  
-    
-  form(action=`/records/${record.id}`, method="post")
+  
+  form(method="post", action='/records/' + record.id)
     p 
       label(for="artist") Artist's Name 
       input#artist(name="artist", type="text", value=record.artist)
