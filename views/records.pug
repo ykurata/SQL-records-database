@@ -1,22 +1,25 @@
 extends layout 
 
 block content 
-  h1 Records Database
-  form(action='/records/search')
-   input(type='search', name='term', placeholder='Search...')
-   button(type="submit") Search 
+  div(class="container")
+    h1 Records Database
+    form(action='/records/search')
+     input(type='search', name='term', placeholder='Search...')
+     button(type="submit") Search 
 
-  p
-   a.button(href='/records/new') Create New Record
+    p
+      a.button(href='/records/new') Create New Record
+  
   table
     thead
       tr
-        th Artist
-        th Title
-    tbody
-      each record in records 
-        tr 
-          td
-            a(href=`/records/${record.id}`)= record.artist 
-          td
-            a(href=`/records/${record.id}`)= record.title
+        th Artist Name
+        th Album Title
+    tbody    
+      each record in records   
+        tr
+          td 
+            a(href=`/records/${record.id}`)= record.artist
+          td= record.title
+            
+    

@@ -1,8 +1,46 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px "Garamond", serif;
 }
+/* Lucida Grande", Helvetica, Arial, sans-serif */
 
 a {
-  color: #00B7FF;
+  color: #424bf4;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Style for table data */
+table {
+  /* font-family: arial, sans-serif; */
+  border-collapse: collapse;
+  width: 60%;
+  margin-left: 50px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.container {
+  margin-left: 50px;
+}
+
+.record-title {
+  margin-bottom: 40px
+}
+
+.title {
+  margin-bottom: 5px;
+}
+
+.data {
+  margin-top: 0;
+  /* margin-left: 30px; */
 }

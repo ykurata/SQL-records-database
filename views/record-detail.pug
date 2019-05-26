@@ -1,30 +1,37 @@
 extends layout 
 
 block content 
-  h1 Record Detail
+  div(class='container')
+    h1(class='record-title')= record.title 
     
-  h2 Artist name 
-  p= record.artist
-  
-  h2 Album title 
-  p= record.title
-  
-  h2 Genre 
-  p= record.genre 
-  
-  h2 Speed 
-  p= record.speed 
-  
-  h2 Side A 
-  p!= md(record.sideA)
-  
-  h2 Side B 
-  p!= md(record.sideB)
-  
-  a.button(href=`/records/${record.id}/edit`) Edit
-  
-  a.button(href="/records") Back
-  
-  form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
-    p 
-      input(type='submit', value="Delete") 
+    div(class="artist-container")
+      h3(class='title') Artist Name
+      p(class='data')= record.artist 
+      
+    div(class='title-container')  
+      h3(class='title') Album Title
+      p(class='data')= record.title 
+       
+    div(class='genre-container') 
+      h3(class='title') Genre
+      p(class='data')= record.genre 
+       
+    div(class='speed-container') 
+      h3(class='title') Speed 
+      p(class='data')= record.speed  
+      
+    div(class='sideA-container')
+      h3(class='title') Side A
+      p(class='data')!= md(record.sideA)
+      
+    div(class='sideB-container')
+      h3(class='title') Side B
+      p(class='data')!= md(record.sideB)   
+         
+    a.button(href=`/records/${record.id}/edit`) Edit
+    
+    a.button(href="/records") Back
+    
+    form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
+      p 
+        input(type='submit', value="Delete") 
