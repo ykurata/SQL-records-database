@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
 router.get('/:id', function(req, res, next){
   Record.findByPk(req.params.id).then(function(record){
     if (record) {
-      res.render('record-detail', {record: record, md: md} );
+      res.render('edit', {record: record, md: md} );
     } else {
       res.render("page-not-found");
     }

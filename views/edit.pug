@@ -2,7 +2,7 @@ extends layout
 
 block content 
   div(class='container')
-    h1 Update Record  
+    h1= record.title  
     
     include form-error
     
@@ -42,4 +42,6 @@ block content
         input(type='submit', value='Update Record')  
       p
         a.button(href='/records') Cancel
-       
+    form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
+      p 
+        input(type='submit', value="Delete") 
