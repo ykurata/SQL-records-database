@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     res.render("records", { records: records });
   }).catch(function(err){
     res.send(500, err);
-  })
+  });
 });
 
 
@@ -20,9 +20,17 @@ router.get('/new', function(req, res){
 
 
 // Creat a new record
-router.post('/', function(req, res, next){
-  Record.create(req.body).then(function(record){
-    res.redirect("/records/" + record.id);
+router.post('/', function(req, res, next) {
+  Record.create(req.body).then(function(record) {
+    res.redirect('/records');
+  }).catch(function(err){
+      if (err.name === "SequelizeValidationError"){
+        res.render("new-record", {record: Record.build(req.body), errors: err.errors});
+      } else {
+        throw err;
+      }
+  }).catch(function(err){
+    res.send(500, err);
   });
 });
 
@@ -59,10 +67,18 @@ router.post('/:id', function(req, res, next){
     } else {
       res.render('page-not-found');
     }
-  }).then(function(record){
-    res.redirect('/records/' + record.id);
+  }).then(function(){
+    res.redirect('/records');
   }).catch(function(err){
-    res.send(500, err);
+      if(err.name === "SequelizeValidationError") {
+        var record = Record.build(req.body);
+        record.id = req.params.id;
+        res.render('edit', {record: record, md: md, errors: err.errors})
+      } else {
+        throw err;
+      }
+  }).catch(function(err){
+      res.send(500, err);
   });
 });
 

@@ -28,9 +28,11 @@ block content
       h3(class='title') Side B
       p(class='data')!= md(record.sideB)   
          
-    a.button(href=`/records/${record.id}/edit`) Edit
+    div(class='edit-button')
+      a.button(href=`/records/${record.id}/edit`) Edit
     
-    a.button(href="/records") Back
+    div(class='back-button')
+      a.button(href="/records") Back
     
     form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
       p 
