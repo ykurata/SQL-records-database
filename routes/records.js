@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Record = require('../models').Record;
 var md = require("node-markdown").Markdown;
+var Sequelize = require('sequelize');
+var Op = Sequelize.Op;
 
 /* GET records listing. */
 router.get('/', function(req, res, next) {
@@ -35,11 +37,47 @@ router.post('/', function(req, res, next) {
 });
 
 
-// Get a specific record
+// Search records
+router.get('/search', function(req, res){
+  var { term } = req.query;  // same as req.query.term
+
+  // Make lowercase
+  term = term.toLowerCase();
+  Record.findAll({where: {[Op.or]: [
+      {
+        artist: {
+          [Op.like]: '%' + term + '%'
+        }
+      },
+      {
+        title: {
+          [Op.like]: '%' + term + '%'
+        }
+      },
+      {
+        genre: {
+          [Op.like]: '%' + term + '%'
+        }
+      },
+  ]}})
+      .then(function(records){
+        if (records.length == 0) {
+          res.render("no-result", { term: term });
+        } else {
+          res.render("records", { records: records});
+        }
+      })
+      .catch(function(err){
+        res.send(500, err);
+      });
+});
+
+
+//Get a specific record
 router.get('/:id', function(req, res, next){
   Record.findByPk(req.params.id).then(function(record){
-    if (record) {
-      res.render('edit', {record: record, md: md} );
+    if (record){
+      res.render("edit", { record: record, md: md });
     } else {
       res.render("page-not-found");
     }
@@ -97,6 +135,7 @@ router.post("/:id/delete", function(req, res, next){
     res.send(500, err);
   });
 });
+
 
 
 module.exports = router;

@@ -1,7 +1,7 @@
 extends layout
 
 block content 
-  div(class='container')
+  div.container
     h1= record.title  
     
     include form-error
@@ -40,8 +40,6 @@ block content
         textarea#sideB(name="sideB", type="text")= record.sideB  
       p
         input(type='submit', value='Update Record')  
-      p
-        a.button(href='/records') Cancel
     form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
       p 
         input(type='submit', value="Delete") 

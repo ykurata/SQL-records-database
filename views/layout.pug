@@ -1,7 +1,21 @@
 doctype html
 html
   head
-    title= title
+    title Records Database
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous")
+  body#main
+    nav
+      h2.header-logo
+        i.fas.fa-compact-disc
+        |     Records
+
+      
+      ul
+        li 
+          a(href='/') Home
+        li 
+          a(href='/records') All Record 
+        li 
+          a(href='/records/new') Add Record 
     block content

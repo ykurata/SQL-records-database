@@ -1,25 +1,23 @@
 extends layout 
 
 block content 
-  div(class="container")
-    h1 Records Database
+  div.container
+    h1 All Records 
     form(action='/records/search')
-     input(type='search', name='term', placeholder='Search...')
-     button(type="submit") Search 
-
-    p
-      a.button(href='/records/new') Create New Record
-  
-  table
-    thead
-      tr
-        th Artist Name
-        th Album Title
-    tbody    
-      each record in records   
-        tr
-          td 
-            a(href=`/records/${record.id}`)= record.artist
-          td= record.title
-            
+      input(type='search', name='term', placeholder='Search...')
+      input(type="submit", value="Search") 
+      
+    div.table  
+      table
+        thead
+          tr
+            th Artist Name
+            th Album Title
+        tbody    
+          each record in records   
+            tr
+              td 
+                a(href=`/records/${record.id}`)= record.artist
+              td= record.title
+              
     

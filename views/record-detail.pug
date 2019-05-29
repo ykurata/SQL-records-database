@@ -1,37 +1,37 @@
 extends layout 
 
 block content 
-  div(class='container')
-    h1(class='record-title')= record.title 
+  div.container
+    h1.record-title= record.title 
     
-    div(class="artist-container")
-      h3(class='title') Artist Name
-      p(class='data')= record.artist 
+    div.artist-container
+      h3.title Artist Name
+      p.data= record.artist 
       
-    div(class='title-container')  
-      h3(class='title') Album Title
-      p(class='data')= record.title 
+    div.title-container  
+      h3.title Album Title
+      p.data= record.title 
        
-    div(class='genre-container') 
-      h3(class='title') Genre
-      p(class='data')= record.genre 
+    div.genre-container 
+      h3.title Genre
+      p.data= record.genre 
        
-    div(class='speed-container') 
-      h3(class='title') Speed 
-      p(class='data')= record.speed  
+    div.speed-container 
+      h3.title Speed 
+      p.data= record.speed  
       
-    div(class='sideA-container')
-      h3(class='title') Side A
-      p(class='data')!= md(record.sideA)
+    div.sideA-container
+      h3.title Side A
+      p.data!= md(record.sideA)
       
-    div(class='sideB-container')
-      h3(class='title') Side B
-      p(class='data')!= md(record.sideB)   
+    div.sideB-container
+      h3.title Side B
+      p.data!= md(record.sideB)   
          
-    div(class='edit-button')
+    div.edit-button
       a.button(href=`/records/${record.id}/edit`) Edit
     
-    div(class='back-button')
+    div.back-button
       a.button(href="/records") Back
     
     form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")

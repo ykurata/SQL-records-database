@@ -1,8 +1,11 @@
 body {
   padding: 50px;
-  font: 18px "Garamond", serif;
+  font: 16px Arial, Helvetica, sans-serif;
 }
-/* Lucida Grande", Helvetica, Arial, sans-serif */
+
+body, html {
+  height: 100%;
+}
 
 a {
   color: #019875;
@@ -15,12 +18,147 @@ a:hover {
   color: black;
 }
 
+
+/* Style for Buttons */
+a.button, input[type=submit] {
+  color: white;
+  background: #019875;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px 14px 12px;
+  font-size: 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+input[type=submit] {
+  border: 0;
+}
+
+a.button:hover, input[type=submit]:hover {
+    background-color: #01b189;
+}
+
+.back-button {
+  margin-top: 30px;
+}
+
+
+/* Styling for Navigation bar*/
+#landing nav {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+#main nav {
+  display: flex;
+  background-color: #696969;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.header-logo {
+  font-size: 30px;
+  color: white;
+  margin-left: 40px;
+};
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+
+/* Style for landing page */
+#landing {
+  background-image: url('../images/landing-photo.jpg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing {
+  text-align: center;
+}
+
+#landing h1 {
+  color: white;
+  font-size: 50px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+
+/* Style for search input */
+#landing form input[type='search'], #search form input[type='search'] {
+  width: 400px;
+}
+
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+body { margin: 30px; }
+.search {
+  position: relative;
+  color: #aaa;
+  font-size: 16px;
+}
+
+.search input[type='search'] {
+  width: 250px;
+  height: 32px;
+
+  background: #fcfcfc;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+}
+
+.search input[type='search'] { text-indent: 32px;}
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+
 /* Style for table data */
+.container {
+  text-align: center;
+}
+
+.container h1, .container form {
+  text-align: center;
+  margin-top: 50px;
+}
+
 table {
-  /* font-family: arial, sans-serif; */
+  text-align: center;
+  margin-top: 50px;
   border-collapse: collapse;
   width: 60%;
-  margin-left: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 td, th {
@@ -31,10 +169,6 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
-}
-
-.container {
-  margin-left: 50px;
 }
 
 .record-title {
@@ -51,27 +185,6 @@ tr:nth-child(even) {
   /* margin-left: 30px; */
 }
 
-a.button, input[type=submit] {
-  color: white;
-  background: #019875;
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-  padding: 10px 14px 12px;
-  font-size: 14px;
-  border-radius: 2px;
-  cursor: pointer;
-}
-
-input[type=submit] {
-  border: 0;
-}
-
-a.button:hover, input[type=submit]:hover {
-    background-color: #01b189;
-}
-
-.back-button {
-  margin-top: 30px;
-}
 
 label {
   font-weight: bold;
@@ -83,7 +196,7 @@ label {
 input {
   padding: 10px;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 2px;
   border-color: #E7E7E7;
   transition: 0.4s;
@@ -92,7 +205,7 @@ input {
 textarea {
   padding: 10px;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 input[type=text], input[type=number], select {
@@ -112,23 +225,6 @@ textarea{
   vertical-align:middle;
 }
 
-.landing {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-  text-align: center;
-}
-
-.landing-title {
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 50px;
-  margin-top: 100px;
-}
-
-.landing-button {
-  display: center;
-}
 
 .errors, .error {
   color: red;

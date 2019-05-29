@@ -1,23 +1,37 @@
-extends layout
+doctype html
+html
+  head
+    title Records Database
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous")
+  body#landing
+    nav
+      h2.header-logo
+        i.fas.fa-compact-disc
+        |     Records
 
-block content
-  style.
-    body, html {
-      height: 100%;
-    }
-    body {
-      background-image: url("/images/records.jpg");
-      /* full height */
-      height: 100%;
       
-      /* Center and scale the image nicely */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
+      ul
+        li 
+          a(href='/') Home
+        li 
+          a(href='/records') All Record 
+        li 
+          a(href='/records/new') Add Record 
     
+    section.landing
+      h1 Records Database
+      form(action='/records/search')
+        div.search
+          i.fas.fa-search
+          input(type='search', name='term', placeholder='Artist Name, Album Title, Genre...')
+          input(type="submit", value="Search")        
     
-  div(class="landing")
-    h1(class="landing-title") Records Database
-      div(class="landing-button")
-        a.button(href="/records") See All Records
+
+
+
+
+
+  
+
+      
