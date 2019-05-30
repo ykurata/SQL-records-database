@@ -1,10 +1,17 @@
+html {
+  background: url('../images/landing-photo.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
   padding: 50px;
   font: 16px Arial, Helvetica, sans-serif;
-}
-
-body, html {
-  height: 100%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 a {
@@ -19,45 +26,9 @@ a:hover {
 }
 
 
-/* Style for Buttons */
-a.button, input[type=submit] {
-  color: white;
-  background: #019875;
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-  padding: 10px 14px 12px;
-  font-size: 14px;
-  border-radius: 2px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-input[type=submit] {
-  border: 0;
-}
-
-a.button:hover, input[type=submit]:hover {
-    background-color: #01b189;
-}
-
-.back-button {
-  margin-top: 30px;
-}
-
-
 /* Styling for Navigation bar*/
-#landing nav {
+nav {
   display: flex;
-  position: absolute;
-  justify-content: space-between;
-  align-items: center;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-#main nav {
-  display: flex;
-  background-color: #696969;
   position: absolute;
   justify-content: space-between;
   align-items: center;
@@ -88,7 +59,7 @@ nav ul li a {
 
 
 /* Style for landing page */
-#landing {
+/* #landing {
   background-image: url('../images/landing-photo.jpg');
   height: 100%;
   background-position: center;
@@ -97,27 +68,28 @@ nav ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .landing {
   text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }
 
-#landing h1 {
+.landing h1 {
   color: white;
   font-size: 50px;
-  margin-top: 0;
+  margin-top: 50px;;
   margin-bottom: 20px;
 }
 
 
 /* Style for search input */
-#landing form input[type='search'], #search form input[type='search'] {
-  width: 400px;
-}
-
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
-body { margin: 30px; }
+/* body { margin: 30px; } */
 .search {
   position: relative;
   color: #aaa;
@@ -125,7 +97,7 @@ body { margin: 30px; }
 }
 
 .search input[type='search'] {
-  width: 250px;
+  width: 400px;
   height: 32px;
 
   background: #fcfcfc;
@@ -136,18 +108,60 @@ body { margin: 30px; }
 
 .search input[type='search'] { text-indent: 32px;}
 .search .fa-search {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  position: relative;
+  /* top: 10px; */
+  left: 27px;
+  bottom: 0px;
+}
+
+
+/* Style for Buttons */
+a.button, input[type=submit] {
+  color: white;
+  background: #019875;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px 14px 12px;
+  font-size: 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+input[type=submit] {
+  border: 0;
+}
+
+a.button:hover, input[type=submit]:hover {
+    background-color: #01b189;
+}
+
+.back-button {
+  margin-top: 30px;
 }
 
 
 /* Style for table data */
 .container {
+  width: 60%;
   text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  margin-left: 230px;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+  margin-top: 100px;
 }
 
-.container h1, .container form {
+.container h1 {
+  position: center;
+  background-color: #019875;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 0;
+  color: white;
+}
+
+.container form {
   text-align: center;
   margin-top: 50px;
 }
@@ -155,6 +169,7 @@ body { margin: 30px; }
 table {
   text-align: center;
   margin-top: 50px;
+  margin-bottom: 50px;
   border-collapse: collapse;
   width: 60%;
   margin-left: auto;
@@ -223,6 +238,10 @@ label,
 textarea{
   display:inline-block;
   vertical-align:middle;
+}
+
+#delete {
+  margin-top: 10px;
 }
 
 

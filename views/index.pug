@@ -1,31 +1,14 @@
-doctype html
-html
-  head
-    title Records Database
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous")
-  body#landing
-    nav
-      h2.header-logo
-        i.fas.fa-compact-disc
-        |     Records
+extends layout 
 
-      
-      ul
-        li 
-          a(href='/') Home
-        li 
-          a(href='/records') All Record 
-        li 
-          a(href='/records/new') Add Record 
-    
-    section.landing
-      h1 Records Database
-      form(action='/records/search')
-        div.search
+block content 
+  section.landing
+    h1 Records Database
+    form(action='/records/search')
+      div.search
+        span 
           i.fas.fa-search
-          input(type='search', name='term', placeholder='Artist Name, Album Title, Genre...')
-          input(type="submit", value="Search")        
+        input(type='search', name='term', placeholder='Artist Name, Album Title, Genre...')
+        input(type="submit", value="Search")        
     
 
 

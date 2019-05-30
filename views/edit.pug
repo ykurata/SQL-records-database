@@ -40,6 +40,7 @@ block content
         textarea#sideB(name="sideB", type="text")= record.sideB  
       p
         input(type='submit', value='Update Record')  
-    form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
+         
+    form#delete(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
       p 
         input(type='submit', value="Delete") 
