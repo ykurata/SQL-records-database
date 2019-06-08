@@ -1,0 +1,17 @@
+extends ../layout
+
+block content 
+  div.container 
+    h1 Sign In
+    
+    include ../form-error 
+
+    form(method="post", action='/user/signin')
+      p 
+        label(for="email") Email Address
+        input#email(name="email", type="text")
+      p 
+        label(for="password") Password
+        input#password(name="password", type="password")  
+      p
+        input(type='submit', value='Sign In')  

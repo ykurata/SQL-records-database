@@ -169,7 +169,7 @@ a.button:hover, input[type=submit]:hover {
 table {
   text-align: center;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   border-collapse: collapse;
   width: 60%;
   margin-left: auto;
@@ -223,7 +223,7 @@ textarea {
   font-size: 16px;
 }
 
-input[type=text], input[type=number], select {
+input[type=text], input[type=number], input[type=password], select {
   margin-left: 7px;
   width: 300px;
 }
