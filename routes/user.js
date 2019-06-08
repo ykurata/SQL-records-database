@@ -8,17 +8,18 @@ const User = require('../models').User;
 
 
 // Get a sign up form
-router.get('/', function(req, res){
+router.get('/signup', function(req, res){
   res.render('user/sign-up');
 });
 
 
 // Post user route
-router.post('/', function(req, res, next){
+router.post('/signup', function(req, res, next){
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password: bcryptjs.hashSync(req.body.password)
+    password: bcryptjs.hashSync(req.body.password),
+    confirmPassword: bcryptjs.hashSync(req.body.confrimPassword)
   }).then(function(user){
     res.redirect('/records');
   }).catch(function(err){
