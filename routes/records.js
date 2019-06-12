@@ -1,5 +1,3 @@
-const auth = require('basic-auth');
-const bcryptjs = require('bcryptjs');
 const express = require('express');
 const router = express.Router();
 const md = require("node-markdown").Markdown;
@@ -9,62 +7,6 @@ const Record = require('../models').Record;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-
-// // User authentication middleware
-// const authenticateUser = (req, res, next) => {
-//   const credential = auth(req);
-//
-//   if (credential) {
-//     User.findOne({ email: credential.name }, function(err, user){
-//       if (err) return next(err);
-//
-//       if (user) {
-//         const authenticated = bcryptjs.compareSync(credential.pass, user.password);
-//
-//         if (authenticted) {
-//           console.log(`Authentication successful for email address: ${credential.name}`);
-//           req.currentUser = user;
-//           next();
-//         } else {
-//           const err = new Error("Incorrect password. Please try again!");
-//           err.status = 401;
-//           next(err);
-//         }
-//       } else {
-//         err = new Error(`User not found for email address: ${credential.name}`);
-//       }
-//     });
-//   } else {
-//     const err = new Error("Authentication is required!");
-//     err.status = 401;
-//     next(err);
-//   }
-// }
-// const app = express();
-// const session = require('express-session');
-// app.use((req, res, next) => {
-//     if (req.cookies.user_sid && !req.session.user) {
-//         res.clearCookie('user_sid');
-//     }
-//     next();
-// });
-// app.use(session({
-//     key: 'user_sid',
-//     secret: 'somerandonstuffs',
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         expires: 600000
-//     }
-// }));
-// middleware function to check for logged-in users
-// const sessionChecker = (req, res, next) => {
-//     if (req.session.user && req.cookies.user_sid) {
-//         res.redirect('/records');
-//     } else {
-//         next();
-//     }
-// };
 
 /* GET records listing. */
 router.get('/', function(req, res, next) {
@@ -103,7 +45,7 @@ router.get('/search', function(req, res){
   const { term } = req.query;  // same as req.query.term
 
   // Make lowercase
-  term = term.toLowerCase();
+  // term = term.toLowerCase();
   Record.findAll({where: {[Op.or]: [
       {
         artist: {

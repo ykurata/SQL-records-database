@@ -14,24 +14,28 @@ router.get('/signup', function(req, res){
 
 
 // Post user route
-router.post('/signup', function(req, res, next){
+router.post('/', function(req, res, next){
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password: bcryptjs.hashSync(req.body.password),
-    confirmPassword: bcryptjs.hashSync(req.body.confrimPassword)
+    password: req.body.password,
+    confirmPassword: req.body.confirmPassword
   }).then(function(user){
+    res.session.user = user;
     res.redirect('/records');
   }).catch(function(err){
     if (err.name === "SequelizeValidationError") {
       res.render('user/sign-up', { user: User.build(req.body), errors: err.errors });
+    } else if (err.name === " SequelizeUniqueConstraintError") {
+      res.render('user/sign-up', { user: User.build(req.body), errors: err.errors });
     } else {
-      throw err;
+      res.render('user/sign-up', { user: User.build(req.body), errors: err.errors });
     }
   }).catch(function(err){
     res.send(500, err);
   });
 });
+
 
 // Get a sign in form
 router.get('/signin', function(req, res){
@@ -41,19 +45,25 @@ router.get('/signin', function(req, res){
 
 // User sign in route
 router.get('/signin', function(req, res, next){
-  const { email } = req.body;
-  const password = beryptjs.compareSync(req.body.password);
+  const email = req.body.email;
+  const password = req.body.password;
 
-  User.findOne({ where: { email: email, password: password } })
-  .then(function(user){
-    if (user) {
-      console.log("Successfully authenticated");
-      req.currentUser = user;
-      res.redirect('/records');
+  User.findOne({ where: { email: email } }).then(function(user){
+    if (!user) {
+      res.redirect('/signin');
+      console.log("failed to logged in");
+    } else if (!user.validPassword(password)) {
+      res.redirect('/signin');
+      console.log("Password didn't match");
     } else {
-      res.redirect('/records');
+      req.session.user = user;
+      res.render('records', { user: user });
+      console.log("Successfully logged in!");
     }
   })
+  .catch(function(err){
+    res.send("Login failed!");
+  });
 });
 
 
