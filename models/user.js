@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           msg: "Username is required!"
         }
-      },
-      unique: {
-        args: true,
-        msg: 'Username already in use!'
       }
     },
     email:{
@@ -20,11 +16,18 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           msg: "Email Address is required!"
+        },
+        isUnique(value, next) {
+          User.findOne({
+            where: { email: value },
+            attributes: ['id']
+          }).done((user) => {
+            if (user)
+              return next("Email Address is in use!");
+
+            next();
+          });
         }
-      },
-      unique: {
-        args: true,
-        msg: 'Email address already in use!'
       }
     },
     password:{
@@ -35,14 +38,14 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    confrimPassword :{
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          msg: "Confrim Password is required!"
-        }
-      }
-    }
+    // confrimPassword :{
+    //   type: DataTypes.STRING,
+    //   validate: {
+    //     notEmpty: {
+    //       msg: "Confrim Password is required!"
+    //     }
+    //   }
+    // }
   }, {
     hooks: {
       beforeCreate: (user) => {

@@ -247,4 +247,5 @@ textarea{
 
 .errors, .error {
   color: red;
+  list-style: none;
 }

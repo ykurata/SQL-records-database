@@ -1,0 +1,11 @@
+extends ../layout
+
+block content 
+  div.container 
+    p= user.username 
+    p= user.email
+    p= user.password
+    
+    form(action=`/user/${user.id}/delete`, method='post')
+      p 
+        input(type='submit', value="Delete") 
