@@ -3,7 +3,11 @@ extends ../layout
 block content 
   div.container 
     h1 Sign Up 
-    
+    if errorMessage
+      h2.errors Ooops!
+      ul.errors
+          li= errorMessage
+          
     include ../form-error 
 
     form(action='/user', method="post")
@@ -16,6 +20,8 @@ block content
       p 
         label(for="password") Password
         input#password(name="password", type="password")  
-      
+      p 
+        label(for="password") Confirm Password
+        input#confirmPassword(name="confirmPassword", type="password")  
       p
         input(type='submit', value='Sign Up')  

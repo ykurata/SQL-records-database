@@ -18,45 +18,50 @@ router.get('/signin', function(req, res){
 });
 
 
-// router.get('/all', function(req, res) {
-//   User.findAll({}).then(function(users){
-//     res.render('user/all-user', { users: users });
-//   });
-// })
-//
-// router.get('/:id', function(req, res, next){
-//   User.findByPk(req.params.id).then(function(user){
-//     res.render('user/user', { user: user });
-//   })
-// })
-//
-// router.post('/:id/delete', function(req, res, next){
-//   User.findByPk(req.params.id).then(function(user){
-//     return user.destroy();
-//   })
-//   .then(function(){
-//     res.redirect('/user/all');
-//   });
-// });
+router.get('/all', function(req, res) {
+  User.findAll({}).then(function(users){
+    res.render('user/all-user', { users: users });
+  });
+})
+
+router.get('/:id', function(req, res, next){
+  User.findByPk(req.params.id).then(function(user){
+    res.render('user/user', { user: user });
+  })
+})
+
+router.post('/:id/delete', function(req, res, next){
+  User.findByPk(req.params.id).then(function(user){
+    return user.destroy();
+  })
+  .then(function(){
+    res.redirect('/user/all');
+  });
+});
 
 // Post user route
-router.post('/', function(req, res, next){
-  User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password
-  }).then(function(user){
-    req.session.userId = user.id;
-    res.redirect('/records');
-  }).catch(function(err){
-    if (err.name === "SequelizeValidationError") {
-      res.render('user/sign-up', { user: User.build(req.body), errors: err.errors });
-    } else {
-      throw err;
-    }
-  }).catch(function(err){
-    res.send(500, err);
-  });
+router.post('/', function(req, res, next) {
+  if (req.body.password !== req.body.confirmPassword) {
+    const errorMessage = "Password and confirm password need to match!";
+    res.render('user/sign-up', { user: User.build(req.body), errorMessage: errorMessage });
+  } else {
+    User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password
+    }).then(function(user){
+      req.session.userId = user.id;
+      res.redirect('/records');
+    }).catch(function(err){
+      if (err.name === "SequelizeValidationError") {
+        res.render('user/sign-up', { user: User.build(req.body), errors: err.errors });
+      } else {
+        throw err;
+      }
+    }).catch(function(err){
+      res.send(500, err);
+    });
+  }
 });
 
 
@@ -85,6 +90,20 @@ router.post('/signin', function(req, res, next){
   .catch(function(err){
     res.render('user/sign-in', { errors: "Login failed!"} );
   });
+});
+
+
+router.get('/logout', function(req, res, next){
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function(err){
+      if (err) {
+        return next(err);
+      } else {
+        return res.redirect('/');
+      }
+    });
+  }
 });
 
 

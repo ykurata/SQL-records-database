@@ -3,9 +3,6 @@ extends layout
 block content 
   section.landing
     h1 Records Database
-    if user 
-      h2 Welcome, 
-      h2= user.username
     form(action='/records/search')
       div.search
         span 

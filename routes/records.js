@@ -3,6 +3,7 @@ const router = express.Router();
 const md = require("node-markdown").Markdown;
 
 const Record = require('../models').Record;
+const mid = require('../middleware');
 
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
@@ -19,7 +20,7 @@ router.get('/', function(req, res, next) {
 
 
 //Get new record form
-router.get('/new', function(req, res){
+router.get('/new', mid.requiresLogin, function(req, res){
   res.render("new-record");
 });
 
@@ -89,7 +90,7 @@ router.get('/:id', function(req, res, next){
 
 
 // Get a update page
-router.get('/:id/edit', function(req, res, next){
+router.get('/:id/edit', mid.requiresLogin, function(req, res, next){
   Record.findByPk(req.params.id).then(function(record){
     if (record){
       res.render("edit", { record: record });
@@ -125,7 +126,7 @@ router.post('/:id', function(req, res, next){
 
 
 // Delete a record
-router.post("/:id/delete", function(req, res, next){
+router.post("/:id/delete", mid.requiresLogin, function(req, res, next){
   Record.findByPk(req.params.id).then(function(record){
     if(record) {
       return record.destroy();
