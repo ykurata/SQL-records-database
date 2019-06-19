@@ -102,7 +102,7 @@ router.get('/:id/edit', mid.requiresLogin, function(req, res, next){
 
 
 // Update a specific record
-router.post('/:id', function(req, res, next){
+router.post('/:id', mid.requiresLogin, function(req, res, next){
   Record.findByPk(req.params.id).then(function(record){
     if (record) {
       return record.update(req.body);

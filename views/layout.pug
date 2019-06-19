@@ -9,12 +9,12 @@ html
     nav
       h2.header-logo
         i.fas.fa-compact-disc
-        |     Records
-
-      
+          a(href='/')   Records
+          
       ul
-        li 
-          a(href='/') Home
+        if currentUser
+          li.username Welcome, #{currentUser} !
+          
         li 
           a(href='/records') All Record 
         li 

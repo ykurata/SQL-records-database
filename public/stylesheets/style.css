@@ -57,19 +57,18 @@ nav ul li a {
   color: white;
 }
 
+nav ul li.username {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 0;
+}
 
-/* Style for landing page */
-/* #landing {
-  background-image: url('../images/landing-photo.jpg');
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+nav h2 i a {
+  color: white;
+}
 
+/* Style for landing page  */
 .landing {
   text-align: center;
   position: fixed;
@@ -132,7 +131,7 @@ input[type=submit] {
 }
 
 a.button:hover, input[type=submit]:hover {
-    background-color: #01b189;
+  background-color: #01b189;
 }
 
 .back-button {
