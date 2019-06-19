@@ -2,8 +2,6 @@ extends layout
 
 block content 
   div.container
-    if user
-      p= user.username
     h1 All Records 
     form(action='/records/search')
       input(type='search', name='term', placeholder='Search...')

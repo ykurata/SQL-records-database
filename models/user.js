@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
             attributes: ['id']
           }).done((user) => {
             if (user)
-              return next("Email Address is in use!");
+              return next("Email address already exists!");
 
             next();
           });

@@ -4,9 +4,12 @@ block content
   div.container 
     h1 Sign In
     
-    include ../form-error 
+    if(errors)
+      h2.errors Ooops!
+      ul.errors
+        li= errors
 
-    form(action='/user/signin')
+    form(action='/user/signin', method="post")
       p 
         label(for="email") Email Address
         input#email(name="email", type="text")

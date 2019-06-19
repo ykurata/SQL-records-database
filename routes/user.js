@@ -1,6 +1,6 @@
 const auth = require('basic-auth');
 const express = require('express');
-const bcryptjs = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
@@ -12,28 +12,32 @@ router.get('/signup', function(req, res){
   res.render('user/sign-up');
 });
 
-router.get('/all', function(req, res) {
-  User.findAll({}).then(function(users){
-    res.render('user/all-user', { users: users });
-  });
-})
-
-router.get('/:id', function(req, res, next){
-  User.findByPk(req.params.id).then(function(user){
-    res.render('user/user', { user: user });
-  })
-})
-
-router.post('/:id/delete', function(req, res, next){
-  User.findByPk(req.params.id).then(function(user){
-    return user.destroy();
-  })
-  .then(function(){
-    res.redirect('/user/all');
-  });
+// Get a sign in form
+router.get('/signin', function(req, res){
+  res.render('user/sign-in');
 });
 
 
+// router.get('/all', function(req, res) {
+//   User.findAll({}).then(function(users){
+//     res.render('user/all-user', { users: users });
+//   });
+// })
+//
+// router.get('/:id', function(req, res, next){
+//   User.findByPk(req.params.id).then(function(user){
+//     res.render('user/user', { user: user });
+//   })
+// })
+//
+// router.post('/:id/delete', function(req, res, next){
+//   User.findByPk(req.params.id).then(function(user){
+//     return user.destroy();
+//   })
+//   .then(function(){
+//     res.redirect('/user/all');
+//   });
+// });
 
 // Post user route
 router.post('/', function(req, res, next){
@@ -42,13 +46,12 @@ router.post('/', function(req, res, next){
     email: req.body.email,
     password: req.body.password
   }).then(function(user){
-    // res.session.user = user;
+    req.session.userId = user.id;
     res.redirect('/records');
   }).catch(function(err){
     if (err.name === "SequelizeValidationError") {
       res.render('user/sign-up', { user: User.build(req.body), errors: err.errors });
     } else {
-      // res.render('user/sign-up', { user: User.build(req.body), errors: err.errors });
       throw err;
     }
   }).catch(function(err){
@@ -57,32 +60,30 @@ router.post('/', function(req, res, next){
 });
 
 
-// Get a sign in form
-router.get('/signin', function(req, res){
-  res.render('user/sign-in');
-});
-
-
 // User sign in route
-router.get('/signin', function(req, res, next){
-  const email = req.query.email;
-  const password = req.query.password;
+router.post('/signin', function(req, res, next){
+  const email = req.body.email;
+  const inputPassword = req.body.password;
 
-  User.findOne({ where: { email: email } }).then(function(user){
+  User.findOne({ where: { email: email } })
+  .then(function(user){
     if (!user) {
-      res.send("failed to logged in");
-      res.redirect('/signin');
-    } else if (!user.validPassword(password)) {
-      res.send("Password didn't match");
-      res.redirect('/signin');
+      res.render('user/sign-in', { errors: "Email doesn't match!"} );
     } else {
-      req.session.user = user;
-      res.send("Successfully logged in!");
-      res.render('records', { user: user });
+      bcrypt.compare(req.body.password, user.password, function(err, result) {
+        if (result == true) {
+          console.log("Logged in!");
+          req.session.userId = user.id;
+          res.locals.currentUser = req.session.userId;
+          res.render("index", { user: user });
+        } else {
+          res.render('user/sign-in', { errors: "Password doesn't match!"});
+        }
+      });
     }
   })
   .catch(function(err){
-    res.send("Login failed!");
+    res.render('user/sign-in', { errors: "Login failed!"} );
   });
 });
 

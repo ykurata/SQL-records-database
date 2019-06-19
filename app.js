@@ -26,12 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // Session authentication. initialize body-parser to parse incoming parameters requests to req.body
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use('/', indexRouter);
-app.use('/records', recordsRouter);
-app.use('/user', userRouter);
 
 // Session authentication
 // initialize express-session to allow us track the logged-in user across sessions.
@@ -40,6 +37,20 @@ app.use(session({
   resave: true,
   saveUninitialized: false
 }));
+
+
+// Make user ID available in template
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.session.userId;
+  next();
+});
+
+
+// Set up routes
+app.use('/', indexRouter);
+app.use('/records', recordsRouter);
+app.use('/user', userRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
