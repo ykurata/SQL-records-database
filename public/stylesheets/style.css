@@ -123,6 +123,7 @@ a.button, input[type=submit] {
   font-size: 14px;
   border-radius: 2px;
   cursor: pointer;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -136,6 +137,7 @@ a.button:hover, input[type=submit]:hover {
 
 .back-button {
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 
