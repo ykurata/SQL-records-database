@@ -38,14 +38,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    // confrimPassword :{
-    //   type: DataTypes.STRING,
-    //   validate: {
-    //     notEmpty: {
-    //       msg: "Confrim Password is required!"
-    //     }
-    //   }
-    // }
   }, {
     hooks: {
       beforeCreate: (user) => {
@@ -60,7 +52,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   User.associate = function(models) {
-    // associations can be defined here
+    // models.User.hasMany(models.Record)
+    models.User.hasMany(models.Record);
   };
   return User;
 };

@@ -38,9 +38,16 @@ block content
       p(class="sideB")
         label(for="sideB", class="sideB-label") Side B 
         textarea#sideB(name="sideB", type="text")= record.sideB  
-      p
-        input(type='submit', value='Update Record')  
-         
-    form#delete(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
-      p 
-        input(type='submit', value="Delete") 
+      
+      if currentUser 
+        p
+          input(type='submit', value='Update Record')
+      else     
+        p.back-button
+          a.button(href="/records") Back
+          
+    if currentUser   
+      form#delete(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
+          p 
+            input(type='submit', value="Delete") 
+        

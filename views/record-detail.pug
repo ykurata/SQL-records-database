@@ -27,13 +27,16 @@ block content
     div.sideB-container
       h3.title Side B
       p.data!= md(record.sideB)   
-         
-    div.edit-button
-      a.button(href=`/records/${record.id}/edit`) Edit
     
-    div.back-button
-      a.button(href="/records") Back
-    
-    form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
-      p 
-        input(type='submit', value="Delete") 
+    if currentUser
+      div.edit-button
+        a.button(href=`/records/${record.id}/edit`) Edit
+      form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
+        p 
+          input(type='submit', value="Delete") 
+      div.back-button
+        a.button(href="/records") Back
+    else 
+      div.back-button
+        a.button(href="/records") Back
+      

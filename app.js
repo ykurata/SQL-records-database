@@ -38,7 +38,6 @@ app.use(session({
   saveUninitialized: false
 }));
 
-
 // Make user ID available in template
 app.use(function(req, res, next) {
   res.locals.currentUser = req.session.user;
