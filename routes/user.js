@@ -18,26 +18,26 @@ router.get('/signin', function(req, res){
 });
 
 
-// router.get('/all', function(req, res) {
-//   User.findAll({}).then(function(users){
-//     res.render('user/all-user', { users: users });
-//   });
-// })
-//
-// router.get('/:id', function(req, res, next){
-//   User.findByPk(req.params.id).then(function(user){
-//     res.render('user/user', { user: user });
-//   })
-// })
-//
-// router.post('/:id/delete', function(req, res, next){
-//   User.findByPk(req.params.id).then(function(user){
-//     return user.destroy();
-//   })
-//   .then(function(){
-//     res.redirect('/user/all');
-//   });
-// });
+router.get('/all', function(req, res) {
+  User.findAll({}).then(function(users){
+    res.render('user/all-user', { users: users });
+  });
+})
+
+router.get('/:id', function(req, res, next){
+  User.findByPk(req.params.id).then(function(user){
+    res.render('user/user', { user: user });
+  })
+})
+
+router.post('/:id/delete', function(req, res, next){
+  User.findByPk(req.params.id).then(function(user){
+    return user.destroy();
+  })
+  .then(function(){
+    res.redirect('/user/all');
+  });
+});
 
 // Post user route
 router.post('/', function(req, res, next) {

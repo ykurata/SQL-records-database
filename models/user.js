@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   User.associate = function(models) {
     // models.User.hasMany(models.Record)
-    models.User.hasMany(models.Record);
+    models.User.hasMany(models.Record, { as: 'records' });
   };
   return User;
 };

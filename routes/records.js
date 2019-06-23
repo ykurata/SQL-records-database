@@ -3,6 +3,7 @@ const router = express.Router();
 const md = require("node-markdown").Markdown;
 
 const Record = require('../models').Record;
+const User = require('../models').User;
 const mid = require('../middleware');
 
 const Sequelize = require('sequelize');
@@ -11,9 +12,15 @@ const Op = Sequelize.Op;
 
 /* GET records listing. */
 router.get('/', function(req, res, next) {
-  Record.findAll({order: [["artist", "ASC"]]}).then(function(records) {
-    res.render("records", { records: records });
+  Record.findAll({order: [["artist", "ASC"]] }).then(function(records) {
+    if (records) {
+      res.render("records", { records: records });
+    } else {
+      const err = "There is no records."
+      res.render('requiresLogin', { err: err } );
+    }
   }).catch(function(err){
+    console.error(err);
     res.send(500, err);
   });
 });
@@ -27,7 +34,15 @@ router.get('/new', mid.requiresLogin, function(req, res){
 
 // Creat a new record
 router.post('/', function(req, res, next) {
-  Record.create(req.body).then(function(record) {
+  Record.create({
+    userId: req.session.userId,
+    artist: req.body.artist,
+    title: req.body.title,
+    genre: req.body.genre,
+    speed: req.body.speed,
+    sideA: req.body.sideA,
+    sideB: req.body.sideB,
+  }).then(function(record) {
     res.redirect('/records');
   }).catch(function(err){
       if (err.name === "SequelizeValidationError"){
@@ -36,6 +51,7 @@ router.post('/', function(req, res, next) {
         throw err;
       }
   }).catch(function(err){
+    console.error(err);
     res.send(500, err);
   });
 });

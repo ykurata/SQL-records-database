@@ -34,16 +34,16 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Please enter the songs in Side B"
         }
       }
-    }
+    },
+    userId: DataTypes.INTEGER
   }, {});
   Record.associate = function(models) {
     // associations can be defined here
-    models.Record.belongsTo(models.User, {
+    Record.belongsTo(models.User, {
       onDelete: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
-    });
+      foreignKey: 'userId',
+      as: 'user',
+    })
   };
   return Record;
 };
