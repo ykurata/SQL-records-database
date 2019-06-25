@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-//Get new record form
+//Get a new record form
 router.get('/new', mid.requiresLogin, function(req, res){
   res.render("new-record");
 });
