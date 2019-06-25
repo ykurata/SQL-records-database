@@ -35,7 +35,7 @@ router.get('/new', mid.requiresLogin, function(req, res){
 // Creat a new record
 router.post('/', function(req, res, next) {
   Record.create({
-    userId: req.session.userId,
+    UserId: req.session.userId,
     artist: req.body.artist,
     title: req.body.title,
     genre: req.body.genre,

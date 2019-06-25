@@ -35,7 +35,14 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    userId: DataTypes.INTEGER
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'User',   // Record belongsTo User
+        key: 'id'
+      }
+    }
   }, {});
   Record.associate = function(models) {
     // associations can be defined here
