@@ -15,6 +15,7 @@ router.get('/', function(req, res, next) {
     res.render("records", { records: records });
   }).catch(function(err){
     res.send(500, err);
+    console.error(err);
   });
 });
 
@@ -27,7 +28,15 @@ router.get('/new', mid.requiresLogin, function(req, res){
 
 // Creat a new record
 router.post('/', function(req, res, next) {
-  Record.create(req.body).then(function(record) {
+  Record.create({
+    UserId: req.session.userId,
+    artist: req.body.artist,
+    title: req.body.title,
+    genre: req.body.genre,
+    speed: req.body.speed,
+    sideA: req.body.sideA,
+    sideB: req.body.sideB,
+  }).then(function(record) {
     res.redirect('/records');
   }).catch(function(err){
       if (err.name === "SequelizeValidationError"){
@@ -37,6 +46,7 @@ router.post('/', function(req, res, next) {
       }
   }).catch(function(err){
     res.send(500, err);
+    console.error(err);
   });
 });
 
@@ -73,6 +83,7 @@ router.get('/search', function(req, res){
       })
       .catch(function(err){
         res.send(500, err);
+        console.error(err);
       });
 });
 
@@ -121,6 +132,7 @@ router.post('/:id', mid.requiresLogin, function(req, res, next){
       }
   }).catch(function(err){
       res.send(500, err);
+      console.error(err);
   });
 });
 
