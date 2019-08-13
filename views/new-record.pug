@@ -1,37 +1,41 @@
 extends layout
 
 block content 
-  h1 New Record 
+  div.container
+    h1 New Record 
     
-  form(action="/records", method="post")
-    p 
-      label(for="name") Artist's Name 
-      input#name(name="name", type="text")
-    p 
-      label(for="title") Album Title 
-      input#title(name="title", type="text")
-    p 
-      label(for="genre") Genre
-      select#genre(name="genre") 
-        option(value="Rock") Rock 
-        option(value="Pop") Pop
-        option(value="Jazz") Jazz
-        option(value="Folk") Folk
-        option(value="Blues") Blues
-        option(value="Hip hop") Hop hop
-        option(value="Country") Country
-        option(value="Classical") Classical
-        option(value="Punk") Punk
-        option(value="Dance Music") Dance Music
-        option(value="Instrumental") Instrumental
-        option(value="Other") Other
-    p 
-      label(for="sideA") Side A
-      textarea#sideA(name="sideA", type="text")
-    p 
-      label(for="sideB") Side B 
-      textarea#sideB(name="sideB", type="text")  
-    p
-      input(type='submit', value='Create New Record')
-    p
-      a.button(href='/') Cancel
+    include form-error
+      
+    form(action="/records", method="post")
+      p 
+        label(for="artist") Artist's Name 
+        input#artist(name="artist", type="text")
+      p 
+        label(for="title") Album Title 
+        input#title(name="title", type="text")
+      p 
+        label(for="genre") Genre
+        select#genre(name="genre") 
+          option(value="Rock") Rock 
+          option(value="Pop") Pop
+          option(value="Jazz") Jazz
+          option(value="Folk") Folk
+          option(value="Blues") Blues
+          option(value="Hip hop") Hop hop
+          option(value="Country") Country
+          option(value="Classical") Classical
+          option(value="Punk") Punk
+          option(value="Dance Music") Dance Music
+          option(value="Instrumental") Instrumental
+          option(value="Other") Other
+      p 
+        label(for="speed") Speed
+        input#speed(name="speed", type="number")        
+      p 
+        label(for="sideA") Side A
+        textarea#sideA(name="sideA", type="text")
+      p 
+        label(for="sideB") Side B 
+        textarea#sideB(name="sideB", type="text")  
+      p
+        input(type='submit', value='Create New Record')

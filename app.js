@@ -1,13 +1,20 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
 
-var indexRouter = require('./routes/index');
-var recordsRouter = require('./routes/records');
+// Session authentication
+const bodyParser = require('body-parser');
+const session = require('express-session');
 
-var app = express();
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+
+// Routes
+const indexRouter = require('./routes/index');
+const recordsRouter = require('./routes/records');
+const userRouter = require('./routes/user');
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +26,31 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Session authentication. initialize body-parser to parse incoming parameters requests to req.body
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Session authentication
+// initialize express-session to allow us track the logged-in user across sessions.
+app.use(session({
+  secret: "somerandomthing",
+  resave: true,
+  saveUninitialized: false
+}));
+
+
+// Make user ID available in template
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.session.user;
+  next();
+});
+
+
+// Set up routes
 app.use('/', indexRouter);
 app.use('/records', recordsRouter);
+app.use('/user', userRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -35,7 +65,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('page-not-found');
 });
 
 module.exports = app;

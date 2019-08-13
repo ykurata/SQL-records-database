@@ -1,0 +1,39 @@
+extends layout 
+
+block content 
+  div.container
+    h1.record-title= record.title 
+    
+    div.artist-container
+      h3.title Artist Name
+      p.data= record.artist 
+      
+    div.title-container  
+      h3.title Album Title
+      p.data= record.title 
+       
+    div.genre-container 
+      h3.title Genre
+      p.data= record.genre 
+       
+    div.speed-container 
+      h3.title Speed 
+      p.data= record.speed  
+      
+    div.sideA-container
+      h3.title Side A
+      p.data!= md(record.sideA)
+      
+    div.sideB-container
+      h3.title Side B
+      p.data!= md(record.sideB)   
+         
+    div.edit-button
+      a.button(href=`/records/${record.id}/edit`) Edit
+    
+    div.back-button
+      a.button(href="/records") Back
+    
+    form(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
+      p 
+        input(type='submit', value="Delete") 

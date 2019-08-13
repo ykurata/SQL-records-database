@@ -1,7 +1,33 @@
 doctype html
 html
   head
-    title= title
+    title Records Database
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous")
+    
   body
+    nav
+      h2.header-logo
+        i.fas.fa-compact-disc
+          a(href='/')   Records
+          
+      ul
+        if currentUser
+          li.username Welcome  #{currentUser} !
+          
+        li 
+          a(href='/records') All Records 
+        li 
+          a(href='/records/new') Add Record 
+        if currentUser
+          li
+            a(href='/user/logout') Log Out
+        else 
+          li
+            a(href='/user/signup') Sign Up
+          li
+            a(href='/user/signin') Sign In
+
+  
+          
     block content

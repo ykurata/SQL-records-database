@@ -1,0 +1,51 @@
+extends layout
+
+block content 
+  div.container
+    h1= record.title  
+    
+    include form-error
+    
+    form(method="post", action='/records/' + record.id)
+      p 
+        label(for="artist") Artist's Name 
+        input#artist(name="artist", type="text", value=record.artist)
+      p 
+        label(for="title") Album Title 
+        input#title(name="title", type="text", value=record.title)
+      p 
+        label(for="genre") Genre
+        select#genre(name="genre") 
+          option(value=record.genre)= record.genre
+          option(value="Rock") Rock 
+          option(value="Pop") Pop
+          option(value="Jazz") Jazz
+          option(value="Folk") Folk
+          option(value="Blues") Blues
+          option(value="Hip hop") Hop hop
+          option(value="Country") Country
+          option(value="Classical") Classical
+          option(value="Punk") Punk
+          option(value="Dance Music") Dance Music
+          option(value="Instrumental") Instrumental
+          option(value="Other") Other
+      p 
+        label(for="speed") Speed
+        input#speed(name="speed", type="number", value=record.speed)        
+      p(class="sideA")
+        label(for="sideA", class="sideA-label") Side A
+        textarea#sideA(name="sideA", type="text")= record.sideA
+      p(class="sideB")
+        label(for="sideB", class="sideB-label") Side B 
+        textarea#sideB(name="sideB", type="text")= record.sideB  
+      if currentUser   
+        p
+          input(type='submit', value='Update Record')  
+      else 
+        div.back-button
+          a.button(href="/records") Back
+          
+    if currentUser
+      form#delete(action=`/records/${record.id}/delete`, method='post', onsubmit="return confirm('Do you really want to delete this record?')")
+        p 
+          input(type='submit', value="Delete") 

@@ -1,8 +1,266 @@
+html {
+  background: url('../images/landing-photo.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px Arial, Helvetica, sans-serif;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 a {
-  color: #00B7FF;
+  color: #019875;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+a:hover {
+  color: black;
+}
+
+
+/* Styling for Navigation bar*/
+nav {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.header-logo {
+  font-size: 30px;
+  color: white;
+  margin-left: 40px;
+};
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav ul li.username {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 0;
+}
+
+nav h2 i a {
+  color: white;
+}
+
+/* Style for landing page  */
+.landing {
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.landing h1 {
+  color: white;
+  font-size: 50px;
+  margin-top: 50px;;
+  margin-bottom: 20px;
+}
+
+
+/* Style for search input */
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+/* body { margin: 30px; } */
+.search {
+  position: relative;
+  color: #aaa;
+  font-size: 16px;
+}
+
+.search input[type='search'] {
+  width: 400px;
+  height: 32px;
+
+  background: #fcfcfc;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+}
+
+.search input[type='search'] { text-indent: 32px;}
+.search .fa-search {
+  position: relative;
+  /* top: 10px; */
+  left: 27px;
+  bottom: 0px;
+}
+
+
+/* Style for Buttons */
+a.button, input[type=submit] {
+  color: white;
+  background: #019875;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px 14px 12px;
+  font-size: 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+input[type=submit] {
+  border: 0;
+}
+
+a.button:hover, input[type=submit]:hover {
+  background-color: #01b189;
+}
+
+.back-button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+/* Style for table data */
+.container {
+  width: 60%;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  margin-left: 230px;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+  margin-top: 100px;
+}
+
+.container h1 {
+  position: center;
+  background-color: #019875;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 0;
+  color: white;
+}
+
+.container form {
+  text-align: center;
+  margin-top: 50px;
+}
+
+table {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  border-collapse: collapse;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.record-title {
+  margin-bottom: 40px
+}
+
+.title {
+  margin-bottom: 5px;
+  color: #019875;
+}
+
+.data {
+  margin-top: 0;
+  /* margin-left: 30px; */
+}
+
+
+label {
+  font-weight: bold;
+  min-width: 130px;
+  display: inline-block;
+  transition: 0.4s;
+}
+
+input {
+  padding: 10px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  border-radius: 2px;
+  border-color: #E7E7E7;
+  transition: 0.4s;
+}
+
+textarea {
+  padding: 10px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+input[type=text], input[type=number], input[type=password], select {
+  margin-left: 7px;
+  width: 300px;
+}
+
+textarea {
+  margin-left: 7px;
+  width: 300px;
+  height: 200px;
+}
+
+label,
+textarea{
+  display:inline-block;
+  vertical-align:middle;
+}
+
+#delete {
+  margin-top: 10px;
+}
+
+
+.errors, .error {
+  color: red;
+  list-style: none;
+}
+
+/* Style for Login required message */
+.requiresLogin {
+  text-align: center;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.requiresLogin h2 {
+  color: white;
 }
