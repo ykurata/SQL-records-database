@@ -17,6 +17,12 @@ This app is connecting to Sqlite database.
   `npm start`
 
   * open http://localhost:3000
+  
+  
+## Test User
+
+* Email: yasuko@gmail.com
+* Password: password
 
 
 ## Description
